@@ -21,6 +21,24 @@ export class User {
         this.timeline.addToTimeline(post);
     }
 
+    printUserTimeline(): string {
+        const builder: string[] = [];
+
+        builder.push(this.id);
+        builder.push('\n');
+        
+        this.timeline.getPosts().forEach((post) => {
+            builder.push(post.publishDate.toString());
+            builder.push('\n');
+            builder.push(post.text);
+
+            builder.push('\n');
+            builder.push('\n');
+        })
+
+        return builder.join("");
+     }
+
     
     public getTimeline() : UserTimeline {
         return this.timeline

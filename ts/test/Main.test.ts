@@ -19,6 +19,7 @@ describe('Bob can view Alice’s timeline', function () {
   
         // Write a post to timeline
         userWriteAPost(alice, "Firs post of Alice");
+        console.log(alice.printUserTimeline());
 
         expect(alice.getTimeline().getPosts().length).to.equal(1);
     });
