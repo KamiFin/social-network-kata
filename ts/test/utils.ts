@@ -46,7 +46,7 @@ export function createBobWithSubscription(socialNetwork: SocialNetwork, userSubs
     return newBob;
 }
 
-function createBob(socialNetwork: SocialNetwork): User { 
+export function createBob(socialNetwork: SocialNetwork): User { 
     const beforeNbrUsers =  socialNetwork.getUsersNumber();
     const bob = new User("bob", "Bob", "bob@kata.com");
     socialNetwork.addUser(bob);
@@ -65,7 +65,7 @@ export function createBobWithPost(socialNetwork: SocialNetwork): User {
     return newBob;
 }
 
-function createCharlie(socialNetwork: SocialNetwork): User { 
+export function createCharlie(socialNetwork: SocialNetwork): User { 
     const beforeNbrUsers =  socialNetwork.getUsersNumber();
     const charlie = new User("charlie", "Charlie", "charlie@kata.com");
     socialNetwork.addUser(charlie);
@@ -83,11 +83,12 @@ export function createCharlieWithSubscriptions(socialNetwork: SocialNetwork, use
     return newCharlie;
 }
 
-export function userWriteAPost(socialNetwork: SocialNetwork, user: User, post: string, publishDate?: Date): User {
+export function userWriteAPost(socialNetwork: SocialNetwork, user: User, post: string, publishDate?: Date, tag?: string): User {
 
     if(user && post.length > 0) {
         const beforeNrPosts = user.getTimeline().getPosts().length;
-        user.writePost(post, publishDate);
+        const postAfterPublish = user.writePost(post, publishDate, tag);
+        if(tag) expect(postAfterPublish.getIdUserTag()).to.equal(tag);
         expect(user.getTimeline().getPosts().length).to.equal(beforeNrPosts + 1);
         socialNetwork.updateUser(user);
     }

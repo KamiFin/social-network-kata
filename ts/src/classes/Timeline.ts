@@ -11,8 +11,9 @@ class SimpleTimeLine {
         return this.posts;
     }
 
-    addToTimeline(post: Post) {
+    addToTimeline(post: Post): Post {
         this.posts.push(post);
+        return this.posts[this.posts.length - 1];
     }
 }
 

@@ -2,11 +2,13 @@ export class Post {
     private text: string;
     private publishDate: Date;
     private idUser: string;
+    private idUserTag?: string;
 
-    constructor(text: string, idUser: string) {
+    constructor(text: string, idUser: string, publishDate?: Date, idUserTag?: string) {
         this.text = text;
         this.idUser = idUser;
-        this.publishDate = new Date();
+        this.publishDate = publishDate ?  publishDate : new Date();
+        this.idUserTag = idUserTag;
     }
 
     public getPublishDate(): Date {
@@ -17,11 +19,11 @@ export class Post {
         return this.text;
     }
 
-    public getIdUser(): string {
-        return this.idUser;
+    public getIdUserTag(): string {
+        return this.idUserTag;
     }
 
-    public setPublishDate(publishDate: Date) {
-        this.publishDate = publishDate;
+    public getIdUser(): string {
+        return this.idUser;
     }
 }

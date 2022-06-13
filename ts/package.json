@@ -5,6 +5,7 @@
   "scripts": {
     "start": "tsc && ts-node src/app.ts",
     "lint": "eslint . --ext .ts",
+    "lint-fix": "npx eslint src/ --ext .ts,.js,.tsx,.jsx --fix",
     "test": "mocha -r ts-node/register ./test/*.ts --recursive --timeout 5000"
   },
   "keywords": [],

@@ -1,5 +1,15 @@
 import { expect } from "chai";
-import { createAliceWithPost, createAliceWithPosts, createBobWithPost, createBobWithSubscription, createCharlieWithSubscriptions, createSocialNetwork, userWriteAPost } from "./utils";
+import { 
+    createAliceWithPost, 
+    createAliceWithPosts, 
+    createBob, 
+    createBobWithPost, 
+    createBobWithSubscription, 
+    createCharlie, 
+    createCharlieWithSubscriptions, 
+    createSocialNetwork, 
+    userWriteAPost
+} from "./utils";
 
 describe('Social network kata', function () {
     it('Alice write a post to personal timeline', function () {
@@ -38,5 +48,19 @@ describe('Social network kata', function () {
         // Create Charlie and subscribe him to Alice and Bob
         const charlie = createCharlieWithSubscriptions(socialNetwork, [alice, bob]);
         console.log(charlie.printSubscriptionsTimeline());
+    });
+
+    it('Bob can link to Charlie in a message using “@”', function () {
+        
+        const socialNetwork = createSocialNetwork();
+        // Create bob
+        let bob = createBob(socialNetwork);
+
+        // Create Charlie
+        const charlie = createCharlie(socialNetwork);
+
+        bob = userWriteAPost(socialNetwork, bob, "Hi @charlie!", new Date("2022-06-10"), charlie.getId());
+
+        console.log(bob.getTimeline().getPosts()[0].getIdUserTag());
     });
 });

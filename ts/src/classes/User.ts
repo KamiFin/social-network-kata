@@ -37,10 +37,9 @@ export class User extends SimpleUser {
     }
 
     
-    public writePost(text?: string, publishDate?: Date) {
-        const post = new Post(text, this.id);
-        if(publishDate) post.setPublishDate(publishDate);
-        this.timeline.addToTimeline(post);
+    public writePost(text?: string, publishDate?: Date, tag?: string): Post {
+        const post = new Post(text, this.id, publishDate, tag);
+        return this.timeline.addToTimeline(post);
     }
 
     public getId() : string {
